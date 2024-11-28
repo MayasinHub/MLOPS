@@ -11,7 +11,7 @@ COPY . /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Expose ports for the FastAPI and Streamlit apps
-EXPOSE 8000 8501
+EXPOSE $PORT
 
 # Command to run both FastAPI and Streamlit
 CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT main:app
