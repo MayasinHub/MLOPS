@@ -1,5 +1,12 @@
-fastapi
+pydantic
 uvicorn
-pandas
-scikit-learn
+fastapi
 numpy
+pandas
+streamlit
+tensorflow
+scikit-learn
+imbalanced-learn
+gunicornFlask
+sklearn
+matplotlib
