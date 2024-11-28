@@ -7,6 +7,5 @@ streamlit
 tensorflow
 scikit-learn
 imbalanced-learn
-gunicornFlask
 sklearn
 matplotlib
