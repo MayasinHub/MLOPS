@@ -1,11 +1,7 @@
-pydantic
-uvicorn
-fastapi
-numpy
-pandas
-streamlit
-tensorflow
-scikit-learn
-imbalanced-learn
+Flask
 sklearn
+fastapi
+pandas
+numpy
 matplotlib
+gunicorn
