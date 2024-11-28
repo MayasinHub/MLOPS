@@ -6,7 +6,7 @@ from app.prediction import predict
 app = FastAPI()
 
 # Load the model on startup
-model = load_model("models/student_dropout_model.pkl")
+model = load_model("models/student-predictor.pkl")
 
 @app.post("/predict")
 async def predict_endpoint(features: dict):
