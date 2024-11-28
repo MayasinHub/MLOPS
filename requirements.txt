@@ -1,5 +1,4 @@
 Flask
-sklearn
 fastapi
 pandas
 numpy
