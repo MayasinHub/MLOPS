@@ -1,20 +1,17 @@
-# Use a lightweight Python image
+# Use an official Python runtime as a parent image
 FROM python:3.9-slim
 
-# Set the working directory inside the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the requirements file to the container
-COPY requirements.txt .
+# Copy the current directory contents into the container at /app
+COPY . /app
 
-# Install dependencies
+# Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the rest of the application code to the container
-COPY . .
+# Expose ports for the FastAPI and Streamlit apps
+EXPOSE $PORT
 
-# Expose the port your application will run on
-EXPOSE 8000
-
-# Set the entry point for your application (adjust if you use Gunicorn, etc.)
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Command to run both FastAPI and Streamlit
+CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT main:app
