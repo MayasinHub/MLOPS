@@ -1,20 +1,17 @@
-# Use Python base image
+# Use an official Python runtime as a parent image
 FROM python:3.9-slim
 
 # Set the working directory
-WORKDIR /src
+WORKDIR /app
 
-# Copy requirements file and install dependencies
-COPY requirements.txt .
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy the application files
-COPY src/ src/
-COPY models/ models/
-COPY data/ data/
+# Expose ports for the FastAPI and Streamlit apps
+EXPOSE 8000 8501
 
-# Expose the port FastAPI will run on
-EXPOSE 8000
-
-# Run the FastAPI app with Uvicorn
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Command to run both FastAPI and Streamlit
+CMD gunicorn --workers=4 --bind 0.0.0.0:$PORT main:app
